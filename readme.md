@@ -1,3 +1,6 @@
+portfolio-jekyll-plugin
+=======================
+
 #Portfolio Jekyll Plugin
 
 This Jekyll Plugin is used for easily rendering images 
