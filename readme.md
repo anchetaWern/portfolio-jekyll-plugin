@@ -29,6 +29,38 @@ saved. The `portfolio_img_root` is where the images for your portfolio is
 saved. The `portfolio_path` is the actual path in your filesystem where your portfolio is saved. And the `portfolio_url` is the address where you can access
 your portfolio from the browser.
 
+
+###Directory Structure
+
+As of the moment this plugin will only work for a specific directory structure.
+
+First you must create a `portfolio` folder on the `octopress/source` directory.
+And inside that directory create an `index.markdown` file which contains the following:
+
+```
+---
+layout: page
+title: "portfolio"
+date: 2013-02-23 07:21
+comments: false
+sharing: true
+footer: true
+---
+
+{% portfolio %}
+```
+
+The portfolio liquid tag basically says that we want to output whatever it is thats in the directory specified in the `portfolio_path` that we setup earlier in our `_config.yml` file. So inside the directory that you specified as your `portfolio_path` you should have your projects each with their own folder. So if you have a project called `wp_plugin` then create folder for that and then inside that folder is where you will save the screenshots for that specific project. The image which has a file name with a prefix of `main` will be the one which will show up as the main project image in your portfolio's home page. Just like the one that I have [here](http://anchetawern.github.com/portfolio/).
+
+To add a description and other details for your projects navigate to the `portfolio` folder that you created earlier in the `octopress/source` directory. Inside that directory create new folders with the same name as the folders that you created earlier in your `portfolio_path` directory. So in our example we also need to create the `wp_plugin` folder in this directory. And then inside of it create an `index.markdown` file in which we can put the details for our project and call the portfolio liquid tag just like this:
+
+```
+{% portfolio wp_plugin %}
+```
+  
+###Using the Plugin
+
+
 You can use the plugin by using liquid tags with the name of the plugin
 as the first argument. The second argument is optional if you're rendering 
 the main page of your portfolio. 
