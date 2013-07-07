@@ -11,7 +11,29 @@ Copy `portfolio.rb` into your `plugins` directory.
 Create a new folder in the `source` directory and name it `portfolio`.
 This is where your projects will be stored, each project will have its own folder, and inside the folder 
 create the `index.markdown` file (the same as what's generated when you issue a `rake generate` command).
-Also create an `index.markdown` file inside the `portfolio` directory. 
+Also create an `index.markdown` file inside the `portfolio` directory. This file will contain the following text:
+
+```
+---
+layout: page
+title: "portfolio"
+comments: false
+sharing: true
+footer: true
+---
+
+{% portfolio %}
+```
+
+What this does is to display the main image and the title for each of your projects. 
+As you can see it uses the default `page` layout, if you want to use a different layout just 
+create a new layout on the `_layouts` directory of the theme that you're using 
+then just change the value for the layout attribute of your main portfolio page. 
+So if you're using the slash theme then the layouts directory is in `.themes/slash/source/_layouts`.
+
+If you want to customize the CSS of the layout that you created, simply edit `scss` files inside the `sass/partials` directory
+of the theme that you're using.
+
 Once you're done this is how it will look like:
 
 ![portfolio directory](https://dl.dropboxusercontent.com/u/126688107/github/portfolio_dir.PNG)
