@@ -8,10 +8,23 @@ from the filesystem.
 ##How to Use
 
 Copy `portfolio.rb` into your `plugins` directory. 
+Create a new folder in the `source` directory and name it `portfolio`.
+This is where your projects will be stored, each project will have its own folder, and inside the folder 
+create the `index.markdown` file (the same as what's generated when you issue a `rake generate` command).
+Also create an `index.markdown` file inside the `portfolio` directory. 
+Once you're done this is how it will look like:
 
-You can basically customize the plugin to your liking
-but as of now the css only works with the Octopress Slash Theme
-with some custom css.
+![portfolio directory](https://dl.dropboxusercontent.com/u/126688107/github/portfolio_dir.PNG)
+
+After that you can create the directory in which the images for each of your projects will be stored.
+Mine is stored in the `source/images/pages/portfolio` directory. Again you will have to create a folder
+for each of your projects, it should be the same as the one that you have used in the `portfolio` directory, otherwise it won't work.
+The image that you want to be the main image (the one that will be shown in the page where all the projects are displayed)
+must have a prefix of `main-`. So if you want to use the image for the login page then the name of the image will be `main-login-page.png`.
+
+
+
+You can always customize the plugin based on the theme that you're using. You can change the HTML structure on the plugin file itself.
 
 You also have to add the following config options to the `_config.yml` file:
 
@@ -22,9 +35,9 @@ portfolio_path: /web_files/blog/octopress/source/images/pages/portfolio
 portfolio_url: images/posts/pages/portfolio
 ```
 
-The `portfolio_root` is the name of the directory where your portfolio is
-saved. The `portfolio_img_root` is where the images for your portfolio is
-saved. The `portfolio_path` is the actual path in your filesystem where your portfolio is saved. And the `portfolio_url` is the address where you can access
+The `portfolio_root` is the name of the directory where your portfolio is saved. 
+The `portfolio_img_root` is where the images for your portfolio is saved. 
+The `portfolio_path` is the actual path in your filesystem where your portfolio is saved. And the `portfolio_url` is the address where you can access
 your portfolio from the browser.
 
 You can use the plugin by using liquid tags with the name of the plugin
