@@ -31,7 +31,7 @@ module Jekyll
           end
 
           projects.each do |project_name|
-            Dir.foreach(portfolio_dir_path + "\\" + project_name) do |screenshot|
+            Dir.foreach(portfolio_dir_path + "/" + project_name) do |screenshot|
               if(screenshot != "." && screenshot != "..")
                 
                 link = portfolio_root + "/" + project_name
@@ -57,12 +57,18 @@ module Jekyll
             link = portfolio_root + "/" + @project_folder
             img = portfolio_img_root + "/" + @project_folder + "/" + screenshot
             title = File.basename(screenshot, File.extname(screenshot))
-            
 
-            content += '<div class="gallery-item">'
-            content += '<a rel="gallery1" title="' + title + '" href="' + img + '" class="fancybox"><img src="' + img + '"></a>'
-            content += '<h3>' + title + '</h3>'
-            content += '</div>'
+            real_title = title.sub("small-", "")
+            big_img = img.sub("small-", "")
+
+            if(title.index "small-")
+              
+
+              content += '<div class="gallery-item">'
+              content += '<a rel="gallery1" title="' + real_title + '" href="' + big_img + '" class="fancybox"><img src="' + img + '"></a>'
+              content += '</div>'
+
+            end
             
           end
         end
