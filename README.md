@@ -159,6 +159,11 @@ so that the plugin will work out of the box.
 }
 ```
 
+##Demo
+
+Demo available [here](http://anchetawern.github.io/projects)
+
+
 ##License
 
 The MIT License (MIT)
