@@ -11,7 +11,7 @@ Copy `portfolio.rb` into your `plugins` directory.
 Create a new folder in the `source` directory and name it `portfolio`.
 This is where your projects will be stored, each project will have its own folder, and inside the folder 
 create the `index.markdown` file (the same as what's generated when you issue a `rake generate` command).
-Also create an `index.markdown` file inside the `portfolio` directory. This file will contain the following text:
+Also create an `index.markdown` file inside the `portfolio` directory. This will be the main portfolio page where all your projects are listed. Here's an example:
 
 ```
 ---
@@ -22,13 +22,53 @@ sharing: true
 footer: true
 ---
 
-{% portfolio %}
+##Client Projects
+
+
+###Ebay Store Automator
+
+Allows sellers to automatically update the prices of products which they sell on ebay.
+Prices are based on the current price in the Amazon website and a configurable profit setting.
+
+{% img right /images/pages/projects/esa/small-admin.png 'ESA Admin' %}
+
+####Technologies Used
+
+- HTML
+- CSS 
+- JavaScript
+- PHP 
+- Amazon Product Advertising API
+- Ebay Trading API
+
+[View More Details](/projects/esa)
+
+## 
+
+###Ecom
+
+Ecom is an e-commerce Wordpress plugin that integrates with online services like Amazon, Ebay, Flickr, and Freebase. It also comes with a Wordpress theme which will be used for its product searching functionalities.
+
+
+{% img right /images/pages/projects/ecom/small-ecom-portal-home.png 'Ecom Portal Theme Homepage' %}
+
+####Technologies Used
+
+- HTML
+- CSS
+- PHP
+- Amazon Product Advertising API
+- flickr API
+- eBay Finding API
+- Freebase
+- Wordpress
+
+[View More Details](/projects/ecom)
+
+## 
 ```
 
-What this does is to display the main image and the title for each of your projects. 
-As you can see it uses the default `page` layout, if you want to use a different layout just 
-create a new layout on the `_layouts` directory of the theme that you're using 
-then just change the value for the layout attribute of your main portfolio page. 
+By default it uses the `page` layout, if you want to use a different layout just create a new layout on the `_layouts` directory of the theme that you're using then just change the value for the layout attribute of your main portfolio page. 
 So if you're using the slash theme then the layouts directory is in `.themes/slash/source/_layouts`.
 
 If you want to customize the CSS of the layout that you created, simply edit `scss` files inside the `sass/partials` directory
@@ -38,17 +78,9 @@ Once you're done this is how it will look like:
 
 ![portfolio directory](https://dl.dropboxusercontent.com/u/126688107/github/portfolio_dir.PNG)
 
-After that you can create the directory in which the images for each of your projects will be stored.
-Mine is stored in the `source/images/pages/portfolio` directory. Again you will have to create a folder
-for each of your projects, it should be the same as the one that you have used in the `portfolio` directory, otherwise it won't work.
-The image that you want to be the main image (the one that will be shown in the page where all the projects are displayed)
-must have a prefix of `main-`. So if you want to use the image for the login page then the name of the image will be `main-login-page.png`.
-
-
-
 You can always customize the plugin based on the theme that you're using. You can change the HTML structure on the plugin file itself.
 
-You also have to add the following config options to the `_config.yml` file:
+Next, add the following config options to the `_config.yml` file:
 
 ```
 portfolio_root: /portfolio
@@ -57,12 +89,14 @@ portfolio_path: /web_files/blog/octopress/source/images/pages/portfolio
 portfolio_url: images/posts/pages/portfolio
 ```
 
-The `portfolio_root` is the name of the directory where your portfolio is saved. 
-The `portfolio_img_root` is where the images for your portfolio is saved. 
+The `portfolio_root` is the name of the directory where your portfolio is saved. This is the path where you need to create a separate folder for each project. 
+
+The `portfolio_img_root` is where all the images for each of your project is stored. 
+
 The `portfolio_path` is the actual path in your filesystem where your portfolio is saved. And the `portfolio_url` is the address where you can access
 your portfolio from the browser.
 
-You can use the plugin by using liquid tags with the name of the plugin
+Inside each project directory, create an `index.markdown` file. This is where you will put the details of your project. You can use the plugin by using liquid tags with the name of the plugin
 as the first argument. The second argument is optional if you're rendering 
 the main page of your portfolio. 
 In the example below the name of the project is `zenoir`
@@ -71,7 +105,7 @@ In the example below the name of the project is `zenoir`
 {% portfolio zenoir %}
 ```
 
-Here's a sample project page:
+Here's some sample content:
 
 ```
 ---
@@ -158,6 +192,8 @@ so that the plugin will work out of the box.
   text-align: center;
 }
 ```
+
+If you need an example on how the directory is structured, you can check the `source` branch of [my Octopress blog](https://github.com/anchetaWern/anchetawern.github.io/tree/source/source/projects).
 
 ##Demo
 
