@@ -199,6 +199,11 @@ If you need an example on how the directory is structured, you can check the `so
 
 Demo available [here](http://anchetawern.github.io/projects)
 
+##Todo
+
+- Rake task for generating portfolio templates
+- Rake task for generating a smaller version of each project image
+
 
 ##License
 
