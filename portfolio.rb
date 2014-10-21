@@ -21,6 +21,8 @@ module Jekyll
       portfolio_dir_path = context.registers[:site].config['portfolio_path']
       portfolio_dir = Dir.new portfolio_dir_path
 
+
+
       Dir.foreach(portfolio_dir_path + "/" + @project_folder) do |screenshot|
         if(screenshot != "." && screenshot != "..")
           
@@ -43,6 +45,10 @@ module Jekyll
         end
       end
 
+ 
+      
+      
+
       return content
       
     end
@@ -50,4 +56,3 @@ module Jekyll
 end
 
 Liquid::Template.register_tag('portfolio', Jekyll::Portfolio)
-
