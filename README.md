@@ -8,10 +8,50 @@ from the filesystem.
 ##How to Use
 
 Copy `portfolio.rb` into your `plugins` directory. 
-Create a new folder in the `source` directory and name it `portfolio`.
-This is where your projects will be stored, each project will have its own folder, and inside the folder 
-create the `index.markdown` file (the same as what's generated when you issue a `rake generate` command).
-Also create an `index.markdown` file inside the `portfolio` directory. This will be the main portfolio page where all your projects are listed. Here's an example:
+
+Add the following into your Octopress `Rakefile`:
+
+```
+# usage rake new_project["awesome-project"]
+desc "Create a new project in #{source_dir}/projects/project-name"
+task :new_project, :title do |t, args|
+  if args.title
+    title = args.title
+  else
+    title = get_stdin("Enter the title of your project: ")
+  end
+  raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)
+  mkdir_p "#{source_dir}/projects/#{title.to_url}"
+  mkdir_p "#{source_dir}/images/pages/projects/#{title.to_url}"
+  filename = "#{source_dir}/projects/#{title.to_url}/index.markdown"
+  puts "Creating new project: #{filename}"
+  open(filename, 'w') do |post|
+    post.puts "---"
+    post.puts "layout: project"
+    post.puts "title: \"#{title.gsub(/&/,'&amp;')}\""
+    post.puts "comments: false"
+    post.puts "sharing: true"
+    post.puts "footer: true"
+    post.puts "---"
+  end
+end
+```
+
+This would allow you to easily generate all the files needed to start a new project. You can use it by navigating to the root directory of your Octopress installation:
+
+```
+cd /home/user/octopress
+```
+
+Once you're in there execute the following in the terminal:
+
+```
+rake new_project["awesome-project"]
+```
+
+Simply replace `awesome-project` with the name of your project. This will create a new folder in your `source/projects` directory and `source/images/projects` with the name you specified. This also creates an `index.makrdown` file inside the `source/projects/awesome-project`. This file is where you will put the details of your project. 
+
+Next, you can now create the main projects page. This is where you will link all of the projects that you have created. You can create the main project page by creating an `index.markdown` on `source/projects` directory. The file would contain something like this:
 
 ```
 ---
@@ -93,7 +133,9 @@ The `portfolio_root` is the name of the directory where your portfolio is saved.
 
 The `portfolio_img_root` is where all the images for each of your project is stored. 
 
-The `portfolio_path` is the actual path in your filesystem where your portfolio is saved. And the `portfolio_url` is the address where you can access
+The `portfolio_path` is the actual path in your filesystem where your portfolio is saved. 
+
+And the `portfolio_url` is the address where you can access
 your portfolio from the browser.
 
 Inside each project directory, create an `index.markdown` file. This is where you will put the details of your project. You can use the plugin by using liquid tags with the name of the plugin
@@ -201,7 +243,6 @@ Demo available [here](http://anchetawern.github.io/projects)
 
 ##Todo
 
-- Rake task for generating portfolio templates
 - Rake task for generating a smaller version of each project image
 
 
