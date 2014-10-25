@@ -1,0 +1,13 @@
+{
+  "name": "Portfolio-gulp",
+  "version": "0.1.0",
+  "author": "Wern Ancheta",
+  "devDependencies": {
+    "gulp": "^3.8.9",
+    "gulp-clean": "^0.3.1",
+    "gulp-copy": "0.0.2",
+    "gulp-image-resize": "^0.5.0",
+    "gulp-imagemin": "^1.2.1",
+    "gulp-rename": "^1.2.0"
+  }
+}
