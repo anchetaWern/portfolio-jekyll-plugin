@@ -4,37 +4,41 @@ portfolio-jekyll-plugin
 This Jekyll Plugin is used for easily rendering images 
 from the filesystem.
 
+###Installing dependencies
 
-##How to Use
+This project relies on [Gulp](http://gulpjs.com/) to optimize the images and copy the files to each of their respective directories. Gulp relies on Node, so if you're not familiar with it, go to the Node.js website and figure out how to install it on your system. Once installed, you can install gulp by executing the following on your terminal:
+
+```
+npm install gulp -g
+```
+
+Next navigate into your octopress directory and then put the `package.json` file in this repository then execute `npm install`. This will install all the dependencies. Once all the dependencies are installed you can also put the `gulpfile.js` in your octopress. We'll look at how to use it later.
+
+
+###Installing the plugin
 
 Copy `portfolio.rb` into your `plugins` directory. 
 
-Add the following into your Octopress `Rakefile`:
+###Configuration
+
+Next, add the following to your `_config.yml` file. Mine looks like this, but you have to modify the paths to match yours:
 
 ```
-# usage rake new_project["awesome-project"]
-desc "Create a new project in #{source_dir}/projects/project-name"
-task :new_project, :title do |t, args|
-  if args.title
-    title = args.title
-  else
-    title = get_stdin("Enter the title of your project: ")
-  end
-  raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)
-  mkdir_p "#{source_dir}/projects/#{title.to_url}"
-  mkdir_p "#{source_dir}/images/pages/projects/#{title.to_url}"
-  filename = "#{source_dir}/projects/#{title.to_url}/index.markdown"
-  puts "Creating new project: #{filename}"
-  open(filename, 'w') do |post|
-    post.puts "---"
-    post.puts "layout: project"
-    post.puts "title: \"#{title.gsub(/&/,'&amp;')}\""
-    post.puts "comments: false"
-    post.puts "sharing: true"
-    post.puts "footer: true"
-    post.puts "---"
-  end
-end
+portfolio_root: /projects
+portfolio_path: /media/wern/Files/files/octopress/source/images/pages/projects
+portfolio_img_root: /images/pages/projects
+```
+
+The `portfolio_root` is the path that points out to your portfolio when you accessed your blog from the browser.
+
+The `portfolio_path` is the actual path in your filesystem where the images for your portfolio is stored. 
+
+The `portfolio_img_root` is the path that points out to where the images for your portfolio are.
+
+Next, add the contents of the `Rakefile` in this repository to your `Rakefile`. Note that you can modify the portfolio directory, by default its named `portfolio`:
+
+```
+portfolio_dir = "portfolio"
 ```
 
 This would allow you to easily generate all the files needed to start a new project. You can use it by navigating to the root directory of your Octopress installation:
@@ -43,15 +47,97 @@ This would allow you to easily generate all the files needed to start a new proj
 cd /home/user/octopress
 ```
 
+###Creating new projects
+
 Once you're in there execute the following in the terminal:
 
 ```
 rake new_project["awesome-project"]
 ```
 
-Simply replace `awesome-project` with the name of your project. This will create a new folder in your `source/projects` directory and `source/images/projects` with the name you specified. This also creates an `index.makrdown` file inside the `source/projects/awesome-project`. This file is where you will put the details of your project. 
+Simply replace `awesome-project` with the name of your project. This will add the following directory in the portfolio directory you specified:
 
-Next, you can now create the main projects page. This is where you will link all of the projects that you have created. You can create the main project page by creating an `index.markdown` on `source/projects` directory. The file would contain something like this:
+```
+portfolio
+ - awesome-project
+  - img
+  - index.markdown 
+```
+
+The `index.markdown` file would have some content prefilled, and it looks like this:
+
+```
+---
+layout: project
+title: "awesome-project"
+comments: false
+sharing: true
+footer: true
+published: true
+---
+```
+
+As you can see it uses `project` as its layout. You can add this layout to Octopress by creating a new file under `octopress/source/_layouts` and add the contents of the `project.html` file in this repository. This will serve as the base layout for all projects. You can modify the layout if you want.
+
+Next, you can now add the images to the `img` directory in your specific project. In our example, the images should be stored in the following path: `octopress/portfolio/awesome-project/img`.
+
+Once you have added some images, you can then use the `portfolio` liquid tag to output the screenshots for your project. In the example below, `zenoir` is the name of the project:
+
+```
+{% portfolio zenoir %}
+```
+
+Once you're done adding all the details for your project, it should look something like this:
+
+```
+---
+layout: page
+title: "Zenoir"
+date: 2013-02-23 07:21
+comments: false
+sharing: true
+footer: true
+---
+
+
+##Project Type
+
+Personal Project
+
+
+##Project Description
+
+Zenoir Online Classroom is an online learning system which can be used by teachers and students for conducting classes online. It's main feature is the sessions module wherein the teacher can have a discussion with the students using a chat box. This is implemented using Node.js and socket.io to ensure that the messages are distributed in real-time. It has also a distinct way of indicating unread posts by using red stars. There is also an email notification system which sends out emails to the students and teachers whenever a new post is made by a specific user in the classroom.
+
+
+##Technologies Used
+
+- HTML
+- CSS
+- JavaScript (jQuery)
+- PHP (CodeIgniter)
+- MySQL
+- jQuery UI
+- HTMLKickStart 
+- PixelCone Fileuploader
+
+
+
+
+##Github Repo
+
+[Zenoir Online Classroom](https://github.com/anchetaWern/Zenoir-Online-Classroom)
+
+
+
+##Screenshots
+
+{% portfolio zenoir %}
+```
+
+###Main project page
+
+Next, you can now create the main projects page. This is where you will link all of the projects that you have created. You can create the main project page by creating an `index.markdown` on the portfolio directory you specified. The file would contain something like this:
 
 ```
 ---
@@ -118,82 +204,9 @@ Once you're done this is how it will look like:
 
 ![portfolio directory](https://dl.dropboxusercontent.com/u/126688107/github/portfolio_dir.PNG)
 
+###Customizing CSS
+
 You can always customize the plugin based on the theme that you're using. You can change the HTML structure on the plugin file itself.
-
-Next, add the following config options to the `_config.yml` file:
-
-```
-portfolio_root: /portfolio
-portfolio_img_root: /images/pages/portfolio
-portfolio_path: /web_files/blog/octopress/source/images/pages/portfolio
-portfolio_url: images/posts/pages/portfolio
-```
-
-The `portfolio_root` is the name of the directory where your portfolio is saved. This is the path where you need to create a separate folder for each project. 
-
-The `portfolio_img_root` is where all the images for each of your project is stored. 
-
-The `portfolio_path` is the actual path in your filesystem where your portfolio is saved. 
-
-And the `portfolio_url` is the address where you can access
-your portfolio from the browser.
-
-Inside each project directory, create an `index.markdown` file. This is where you will put the details of your project. You can use the plugin by using liquid tags with the name of the plugin
-as the first argument. The second argument is optional if you're rendering 
-the main page of your portfolio. 
-In the example below the name of the project is `zenoir`
-
-```
-{% portfolio zenoir %}
-```
-
-Here's some sample content:
-
-```
----
-layout: page
-title: "Zenoir"
-date: 2013-02-23 07:21
-comments: false
-sharing: true
-footer: true
----
-
-
-##Project Type
-
-Personal Project
-
-
-##Project Description
-
-Zenoir Online Classroom is an online learning system which can be used by teachers and students for conducting classes online. It's main feature is the sessions module wherein the teacher can have a discussion with the students using a chat box. This is implemented using Node.js and socket.io to ensure that the messages are distributed in real-time. It has also a distinct way of indicating unread posts by using red stars. There is also an email notification system which sends out emails to the students and teachers whenever a new post is made by a specific user in the classroom.
-
-
-##Technologies Used
-
-- HTML
-- CSS
-- JavaScript (jQuery)
-- PHP (CodeIgniter)
-- MySQL
-- jQuery UI
-- HTMLKickStart 
-- PixelCone Fileuploader
-
-
-
-
-##Github Repo
-
-[Zenoir Online Classroom](https://github.com/anchetaWern/Zenoir-Online-Classroom)
-
-
-
-##Screenshots
-
-{% portfolio zenoir %}
-```
 
 Lastly you could add the following style to `_article.scss` file
 so that the plugin will work out of the box.
@@ -235,15 +248,23 @@ so that the plugin will work out of the box.
 }
 ```
 
+###Compiling
+
+Once you're happy with everything, you can now compile the project. Execute the follwing commands in your terminal:
+
+```
+gulp
+rake generate
+rake preview
+```
+
+Running `gulp` might take some time depending on how many projects you have on your portfolio. 
+
 If you need an example on how the directory is structured, you can check the `source` branch of [my Octopress blog](https://github.com/anchetaWern/anchetawern.github.io/tree/source/source/projects).
 
 ##Demo
 
 Demo available [here](http://anchetawern.github.io/projects)
-
-##Todo
-
-- Rake task for generating a smaller version of each project image
 
 
 ##License
