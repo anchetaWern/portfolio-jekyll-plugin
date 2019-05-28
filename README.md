@@ -1,12 +1,7 @@
-[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=wernancheta&url=https://github.com/anchetaWern/portfolio-jekyll-plugin&title=portfolio-jekyll&language=ruby&tags=github&category=software)
+# portfolio-jekyll-plugin
+This Jekyll Plugin is used for easily rendering images from the filesystem.
 
-portfolio-jekyll-plugin
-=======================
-
-This Jekyll Plugin is used for easily rendering images 
-from the filesystem.
-
-###Installing dependencies
+### Installing dependencies
 
 This project relies on [Gulp](http://gulpjs.com/) to optimize the images and copy the files to each of their respective directories. Gulp relies on Node, so if you're not familiar with it, go to the Node.js website and figure out how to install it on your system. Once installed, you can install gulp by executing the following on your terminal:
 
@@ -17,11 +12,11 @@ npm install gulp -g
 Next navigate into your octopress directory and then put the `package.json` file in this repository then execute `npm install`. This will install all the dependencies. Once all the dependencies are installed you can also put the `gulpfile.js` in your octopress. We'll look at how to use it later.
 
 
-###Installing the plugin
+### Installing the plugin
 
 Copy `portfolio.rb` into your `plugins` directory. 
 
-###Configuration
+### Configuration
 
 Next, add the following to your `_config.yml` file. Mine looks like this, but you have to modify the paths to match yours:
 
@@ -49,7 +44,7 @@ This would allow you to easily generate all the files needed to start a new proj
 cd /home/user/octopress
 ```
 
-###Creating new projects
+### Creating new projects
 
 Once you're in there execute the following in the terminal:
 
@@ -206,7 +201,7 @@ Once you're done this is how it will look like:
 
 ![portfolio directory](https://dl.dropboxusercontent.com/u/126688107/github/portfolio_dir.PNG)
 
-###Customizing CSS
+### Customizing CSS
 
 You can always customize the plugin based on the theme that you're using. You can change the HTML structure on the plugin file itself.
 
@@ -250,7 +245,7 @@ so that the plugin will work out of the box.
 }
 ```
 
-###Compiling
+### Compiling
 
 Once you're happy with everything, you can now compile the project. Execute the follwing commands in your terminal:
 
@@ -264,18 +259,13 @@ Running `gulp` might take some time depending on how many projects you have on y
 
 If you need an example on how the directory is structured, you can check the `source` branch of [my Octopress blog](https://github.com/anchetaWern/anchetawern.github.io/tree/source/source/projects).
 
-##Demo
+## Demo
 
 Demo available [here](http://anchetawern.github.io/projects)
 
 
-##License
+## Donation
 
-The MIT License (MIT)
-Copyright (c) <year> <copyright holders>
- 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
- 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
- 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+If this project helped you reduce time to develop, please consider buying me a cup of coffee :)
+
+<a href="https://www.buymeacoffee.com/wernancheta" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
